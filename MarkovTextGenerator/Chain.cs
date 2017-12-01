@@ -40,6 +40,13 @@ namespace MarkovTextGenerator
         {
             // TODO: Break sentence up into word pairs
             // TODO: Add each word pair to the chain
+            List<String> arr = sentence.Split(' ').ToList();
+            arr.Add("");
+
+            for(int i = 0; i < arr.Count - 1; i++)
+            {
+                AddPair(arr[i], arr[i + 1]);
+            }
         }
 
         // Adds a pair of words to the chain that will appear in order
@@ -77,9 +84,19 @@ namespace MarkovTextGenerator
         {
             if (words.ContainsKey(word))
             {
-                double choice = 1.0 / (double)rand.Next(100000);
+                double choice = rand.NextDouble();
 
-                Console.WriteLine("I picked the number " + choice); 
+                double sum = 0;
+                foreach (Word s in words[word])
+                {
+                    sum += s.Probability;
+                    if (choice < sum)
+                    {
+                        return s.ToString();
+                    }
+                }
+
+                // Console.WriteLine("I picked the number " + choice); 
             }
 
             return "idkbbq";

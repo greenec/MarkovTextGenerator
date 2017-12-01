@@ -31,14 +31,22 @@ namespace MarkovTextGenerator
             // Now let's update all the probabilities with the new data
             chain.UpdateProbabilities();
 
-            // Okay now for the fun part
-            Console.WriteLine("Done learning!  Now give me a word and I'll tell you what comes next.");
-            Console.Write("> ");
+            
+            while(true)
+            {
+                // Okay now for the fun part
+                Console.WriteLine("Done learning!  Now give me a word and I'll tell you what comes next.");
+                Console.Write("> ");
 
-            String word = Console.ReadLine();
-            String nextWord = chain.GetNextWord(word);
-            Console.WriteLine("I predict the next word will be " + nextWord);
-            Console.ReadLine();
+                String word = Console.ReadLine();
+                while(word != "")
+                {
+                    Console.WriteLine(word);
+                    word = chain.GetNextWord(word);
+                }
+                // Console.WriteLine("I predict the next word will be " + nextWord);
+                Console.ReadLine();
+            }
         }
     }
 }

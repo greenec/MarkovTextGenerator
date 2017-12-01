@@ -99,7 +99,7 @@ namespace MarkovTextGenerator
                 // Console.WriteLine("I picked the number " + choice); 
             }
 
-            return "idkbbq";
+            return "";
         }
 
         public void UpdateProbabilities ()
